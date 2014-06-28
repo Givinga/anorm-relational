@@ -1,5 +1,7 @@
 package com.jaroop.anormext
 
+import com.jaroop.anormext.util.ExtendedList._
+
 /** Describes a one to many relationship between a single parent and child.
 *   This is an intermediate class for parsing SQL results, then flattening.
 * @param parent The parent object which contains a list of child objects.
@@ -26,27 +28,24 @@ object OneToMany {
     * @return A list of parent objects only, containing the children.
     */
     def flatten[A, B](relations: List[OneToMany[A, B]])(implicit rf: RowFlattener[A, B]): List[A] = {
-        relations.groupBy(_.parent)
+        relations.groupConsecutive(_.parent)
             .map{ case (a, rel) => rf(a, rel.flatMap(_.child))}
-            .toList
     }
 
     def flatten[A, B1, B2](relations: List[OneToMany2[A, B1, B2]])(implicit rf: RowFlattener2[A, B1, B2]): List[A] = {
-        relations.groupBy(_.parent)
-            .mapValues(_.map(t => (t.c1, t.c2)).unzip)
-            .toList
+        relations.groupConsecutive(_.parent)
+            .map{ case (p, l) => (p, l.map(t => (t.c1, t.c2)).unzip) }
             .map{ case (a, (b, c)) => rf(a, b.flatten.distinct, c.flatten.distinct)}
     }
 
     def flatten[A, B1, B2, B3](relations: List[OneToMany3[A, B1, B2, B3]])(implicit rf: RowFlattener3[A, B1, B2, B3]): List[A] = {
-        relations.groupBy(_.parent)
-            .mapValues(_.map(t => (t.c1, t.c2, t.c3)).unzip3)
-            .toList
+        relations.groupConsecutive(_.parent)
+            .map{ case (p, l) => (p, l.map(t => (t.c1, t.c2, t.c3)).unzip3) }
             .map{ case (p, (c1, c2, c3)) => rf(p, c1.flatten.distinct, c2.flatten.distinct, c3.flatten.distinct)}
     }
 
     def flatten[A, B1, B2, B3, B4](relations: List[OneToMany4[A, B1, B2, B3, B4]])(implicit rf: RowFlattener4[A, B1, B2, B3, B4]): List[A] = {
-        relations.groupBy(_.parent)
+        relations.groupConsecutive(_.parent)
             .toList
             .map{ case (p, t) => 
                 rf(
