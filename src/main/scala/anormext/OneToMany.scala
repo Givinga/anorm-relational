@@ -1,4 +1,4 @@
-package com.jaroop.anorm
+package com.jaroop.anormext
 
 /** Describes a one to many relationship between a single parent and child.
 *   This is an intermediate class for parsing SQL results, then flattening.

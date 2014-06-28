@@ -1,4 +1,4 @@
-package com.jaroop.anorm
+package com.jaroop.anormext
 
 /** A Function-like class to describe how to copy a list of child objects into
 * 	their respective parents.
@@ -17,6 +17,7 @@ case class RowFlattener[A, B](f: (A, List[B]) => A) {
 
 }
 
+/** Includes extra `apply` methods for each `RowFlattener` arity. */
 object RowFlattener {
 
 	def apply[A, B1, B2](f: (A, List[B1], List[B2]) => A): RowFlattener2[A, B1, B2] = RowFlattener2[A, B1, B2](f)
