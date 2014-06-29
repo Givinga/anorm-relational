@@ -1,4 +1,4 @@
-package com.jaroop.anormext
+package com.jaroop
 
 import anorm._
 
@@ -9,4 +9,6 @@ package object anormext {
 	* @return `RelationalSQL` wrapper of `SimpleSql`
 	*/
 	implicit def simple2Relational[T](sql: SimpleSql[T]): RelationalSQL[T] = RelationalSQL(sql)
+
+	implicit def query2Relational(sql: SqlQuery): RelationalSQL[Row] = RelationalSQL(sql.asSimple[Row]())
 }

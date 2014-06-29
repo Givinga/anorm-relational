@@ -17,6 +17,8 @@ case class OneToMany3[A, B1, B2, B3](parent: A, c1: Option[B1], c2: Option[B2], 
 
 case class OneToMany4[A, B1, B2, B3, B4](parent: A, c1: Option[B1], c2: Option[B2], c3: Option[B3], c4: Option[B4])
 
+case class OneToMany5[A, B1, B2, B3, B4, B5](parent: A, c1: Option[B1], c2: Option[B2], c3: Option[B3], c4: Option[B4], c5: Option[B5])
+
 object OneToMany {
 
     /** Flattens a one-to-many relation by using an implicit `RowFlattener` to copy the
@@ -58,13 +60,27 @@ object OneToMany {
             }
     }
 
-    /** Transform a non-optional relation to `Some` for compatibility with `flatten` */
-    def apply[A, B](parent: A, child: B): OneToMany[A, B] = OneToMany[A, B](parent, Some(child))
+    def flatten[A, B1, B2, B3, B4, B5](relations: List[OneToMany5[A, B1, B2, B3, B4, B5]])(implicit rf: RowFlattener5[A, B1, B2, B3, B4, B5]): List[A] = {
+        relations.groupConsecutive(_.parent)
+            .toList
+            .map{ case (p, t) => 
+                rf(
+                    p, 
+                    t.map(_.c1).flatten.distinct, 
+                    t.map(_.c2).flatten.distinct, 
+                    t.map(_.c3).flatten.distinct, 
+                    t.map(_.c4).flatten.distinct,
+                    t.map(_.c5).flatten.distinct
+                )
+            }
+    }
 
-    def apply[A, B1, B2](parent: A, c1: B1, c2: B2): OneToMany2[A, B1, B2] = OneToMany2[A, B1, B2](parent, Some(c1), Some(c2))
+    // def apply[A, B1, B2](parent: A, c1: B1, c2: B2): OneToMany2[A, B1, B2] = OneToMany2[A, B1, B2](parent, Some(c1), Some(c2))
 
-    def apply[A, B1, B2, B3](parent: A, c1: B1, c2: B2, c3: B3): OneToMany3[A, B1, B2, B3] = OneToMany3[A, B1, B2, B3](parent, Some(c1), Some(c2), Some(c3))
+    // def apply[A, B1, B2, B3](parent: A, c1: B1, c2: B2, c3: B3): OneToMany3[A, B1, B2, B3] = OneToMany3[A, B1, B2, B3](parent, Some(c1), Some(c2), Some(c3))
 
-    def apply[A, B1, B2, B3, B4](parent: A, c1: B1, c2: B2, c3: B3, c4: B4): OneToMany4[A, B1, B2, B3, B4] = OneToMany4[A, B1, B2, B3, B4](parent, Some(c1), Some(c2), Some(c3), Some(c4))
+    // def apply[A, B1, B2, B3, B4](parent: A, c1: B1, c2: B2, c3: B3, c4: B4): OneToMany4[A, B1, B2, B3, B4] = OneToMany4[A, B1, B2, B3, B4](parent, Some(c1), Some(c2), Some(c3), Some(c4))
+
+    // def apply[A, B1, B2, B3, B4, B5](parent: A, c1: B1, c2: B2, c3: B3, c4: B4, c5: B5): OneToMany5[A, B1, B2, B3, B4, B5] = OneToMany5[A, B1, B2, B3, B4, B5](parent, Some(c1), Some(c2), Some(c3), Some(c4), Some(c5))
 
 }
