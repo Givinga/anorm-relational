@@ -75,12 +75,4 @@ object OneToMany {
             }
     }
 
-    // def apply[A, B1, B2](parent: A, c1: B1, c2: B2): OneToMany2[A, B1, B2] = OneToMany2[A, B1, B2](parent, Some(c1), Some(c2))
-
-    // def apply[A, B1, B2, B3](parent: A, c1: B1, c2: B2, c3: B3): OneToMany3[A, B1, B2, B3] = OneToMany3[A, B1, B2, B3](parent, Some(c1), Some(c2), Some(c3))
-
-    // def apply[A, B1, B2, B3, B4](parent: A, c1: B1, c2: B2, c3: B3, c4: B4): OneToMany4[A, B1, B2, B3, B4] = OneToMany4[A, B1, B2, B3, B4](parent, Some(c1), Some(c2), Some(c3), Some(c4))
-
-    // def apply[A, B1, B2, B3, B4, B5](parent: A, c1: B1, c2: B2, c3: B3, c4: B4, c5: B5): OneToMany5[A, B1, B2, B3, B4, B5] = OneToMany5[A, B1, B2, B3, B4, B5](parent, Some(c1), Some(c2), Some(c3), Some(c4), Some(c5))
-
 }
