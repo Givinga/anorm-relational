@@ -1,4 +1,4 @@
-package com.jaroop.anormext.util
+package com.jaroop.anorm.util
 
 /** A class for extra `List` functions.
 * @constructor Creates an `ExtendedList` from a `List`.

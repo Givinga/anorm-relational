@@ -1,4 +1,4 @@
-package com.jaroop.anormext
+package com.jaroop.anorm.relational
 
 /** A Function-like class to describe how to copy a list of child objects into
 * 	their respective parents.

@@ -1,4 +1,4 @@
-package com.jaroop.anormext
+package com.jaroop.anorm.relational
 
 import anorm._
 import java.sql.Connection
