@@ -107,7 +107,7 @@ object RelationalParser {
         )
     }
 
-    /** Implicitly concert a `RelationalParser` to a `RowParser` to easily compose `RelationalParser`s. */
+    /** Implicitly convert a `RelationalParser` to a `RowParser` to easily compose `RelationalParser`s. */
     implicit def relational2Row[A, B](rp: RelationalParser[A, B]): RowParser[OneToMany[A, B]] = rp.parser
 
     implicit def relational2Row[A, B1, B2](rp: RelationalParser2[A, B1, B2]): RowParser[OneToMany2[A, B1, B2]] = rp.parser
