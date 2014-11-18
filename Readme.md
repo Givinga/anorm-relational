@@ -1,7 +1,7 @@
 *Anorm Relational*
 ------------------------------------------------
 
-Anorm relational is a simple wrapper around the Anorm library available within [Play Framework](http://www.playframework.com), designed to extend the parsing API to handle one-to-many relationships with ease.
+Anorm relational is a simple wrapper around the Anorm library available within [Play Framework](http://www.playframework.com), designed to extend the parsing API to handle one-to-many relationships with ease. It is currently available for Play 2.3.x and built against Scala 2.10.4 and 2.11.4
 
 Motivations
 -----------
@@ -86,6 +86,23 @@ case class User(id: Long, email: String)
 
 The same `groupBy` technique can be used to solve the problem of fetching a `Blog` in a single query, however you must start over completely to figure out the transformations--and you can trust me in that it will look horribly ugly. This is where the `RelationalParser` and `RowFlattener` will come in.
 
+Installation
+------------
+
+Add the following to your build dependencies in your `build.sbt` or `Build.scala` file:
+
+```
+"com.jaroop" %% "anorm-relational" % "0.1.0"
+```
+
+For example in your `build.sbt`:
+
+```
+libraryDependencies ++= Seq(
+    "com.jaroop" %% "anorm-relational" % "0.1.0"
+)
+```
+
 Usage
 -----
 
@@ -150,3 +167,8 @@ Disclaimer
 ----------
 
 Anorm relational currently uses Anorm 2.3.x as a dependency, which may cause it to break on earlier versions. There are currently `RowFlattener` and `RelationalParser` classes available for up to 5 one-to-many relations, though this should be more than enough for a reasonable amount of data. Version 0.1.0 is a prototype, so there is a high possibility that breaking changes may be introduced to the API in the future. While it is currently in use on production servers without any known issues, I still advise to proceed at your own risk.
+
+License
+-------
+
+Anorm relational is distributed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
