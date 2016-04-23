@@ -1,7 +1,7 @@
 *Anorm Relational*
 ------------------------------------------------
 
-Anorm relational is a simple wrapper around the Anorm library available within [Play Framework](http://www.playframework.com), designed to extend the parsing API to handle one-to-many relationships with ease. It is currently available for Play 2.3.x and built against Scala 2.10.4 and 2.11.4
+Anorm relational is a simple wrapper around the Anorm library available within [Play Framework](http://www.playframework.com), designed to extend the parsing API to handle one-to-many relationships with ease. It is currently available for Play 2.3.x or Anorm 2.5.0 and built against Scala 2.11.8 and 2.10.6.
 
 Motivations
 -----------
@@ -166,7 +166,9 @@ implicit val rf = RowFlattener[Blog, Post] { (blog, posts) => blog.copy(posts = 
 Disclaimer
 ----------
 
-Anorm relational currently uses Anorm 2.3.x as a dependency, which may cause it to break on earlier versions. There are currently `RowFlattener` and `RelationalParser` classes available for up to 5 one-to-many relations, though this should be more than enough for a reasonable amount of data. Version 0.1.0 is a prototype, so there is a high possibility that breaking changes may be introduced to the API in the future. While it is currently in use on production servers without any known issues, I still advise to proceed at your own risk.
+Anorm relational 0.2.0 currently uses Anorm 2.5.0 as a dependency, which may cause it to break on earlier versions. There are currently `RowFlattener` and `RelationalParser` classes available for up to 5 one-to-many relations, though this should be more than enough for a reasonable amount of data. Version 0.2.0 is a prototype, so there is a high possibility that breaking changes may be introduced to the API in the future. While it is currently in use on production servers without any known issues, I still advise to proceed at your own risk.
+
+For Play 2.3.x, use version 0.1.0.
 
 License
 -------
