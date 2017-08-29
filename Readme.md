@@ -1,7 +1,7 @@
 *Anorm Relational*
 ------------------------------------------------
 
-Anorm relational is a simple wrapper around the Anorm library available within [Play Framework](http://www.playframework.com), designed to extend the parsing API to handle one-to-many relationships with ease. It is currently available for Play 2.3.x or Anorm 2.5.0 and built against Scala 2.11.8 and 2.10.6.
+Anorm relational is a simple wrapper around the Anorm library available within [Play Framework](http://www.playframework.com), designed to extend the parsing API to handle one-to-many relationships with ease. It is currently available for Play 2.3.x and Anorm 2.5.x.
 
 Motivations
 -----------
@@ -92,16 +92,24 @@ Installation
 Add the following to your build dependencies in your `build.sbt` or `Build.scala` file:
 
 ```
-"com.jaroop" %% "anorm-relational" % "0.1.0"
+"com.jaroop" %% "anorm-relational" % "0.3.0"
 ```
 
 For example in your `build.sbt`:
 
 ```
 libraryDependencies ++= Seq(
-    "com.jaroop" %% "anorm-relational" % "0.1.0"
+    "com.jaroop" %% "anorm-relational" % "0.3.0"
 )
 ```
+
+Use this table to determine which version to use:
+
+| Play/Anorm Version  | Anorm Relational Version | Scala 2.10 | Scala 2.11 | Scala 2.12 |
+| ------------------- | ------------------------ | ---------- | ---------- | ---------- |
+| Play 2.3.x          | 0.1.0                    | &#10003;   | &#10003;   |            |
+| Anorm 2.5.0         | 0.2.0                    | &#10003;   | &#10003;   |            |
+| Anorm 2.5.3         | 0.3.0                    |            | &#10003;   | &#10003;   |
 
 Usage
 -----
@@ -166,9 +174,7 @@ implicit val rf = RowFlattener[Blog, Post] { (blog, posts) => blog.copy(posts = 
 Disclaimer
 ----------
 
-Anorm relational 0.2.0 currently uses Anorm 2.5.0 as a dependency, which may cause it to break on earlier versions. There are currently `RowFlattener` and `RelationalParser` classes available for up to 5 one-to-many relations, though this should be more than enough for a reasonable amount of data. Version 0.2.0 is a prototype, so there is a high possibility that breaking changes may be introduced to the API in the future. While it is currently in use on production servers without any known issues, I still advise to proceed at your own risk.
-
-For Play 2.3.x, use version 0.1.0.
+Anorm relational 0.3.0 currently uses Anorm 2.5.3 as a dependency, which may cause it to break on earlier versions. There are currently `RowFlattener` and `RelationalParser` classes available for up to 5 one-to-many relations, though this should be more than enough for a reasonable amount of data. Version 0.3.0 is a prototype, so there is a high possibility that breaking changes may be introduced to the API in the future. While it is currently in use on production servers without any known issues, I still advise to proceed at your own risk.
 
 License
 -------

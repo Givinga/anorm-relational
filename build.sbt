@@ -1,18 +1,15 @@
-import SonatypeKeys._
-
-sonatypeSettings
 
 name := "anorm-relational"
 
-version := "0.2.0"
+version := "0.3.0"
 
-crossScalaVersions := Seq("2.10.6", "2.11.8")
+crossScalaVersions := Seq("2.11.11", "2.12.3")
 
 organization := "com.jaroop"
 
 libraryDependencies ++= Seq(
-    "org.specs2" %% "specs2" % "2.3.12" % "test",
-    "com.typesafe.play" %% "anorm" % "2.5.0"
+    "org.specs2" %% "specs2-core" % "3.9.4" % "test",
+    "com.typesafe.play" %% "anorm" % "2.5.3"
 )
 
 resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
