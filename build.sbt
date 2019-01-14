@@ -1,15 +1,17 @@
 
 name := "anorm-relational"
 
-version := "0.3.0"
+version := "0.4.0"
 
-crossScalaVersions := Seq("2.11.11", "2.12.3")
+scalaVersion := "2.12.8"
+
+crossScalaVersions := Seq("2.11.12", "2.12.8")
 
 organization := "com.jaroop"
 
 libraryDependencies ++= Seq(
     "org.specs2" %% "specs2-core" % "3.9.4" % "test",
-    "com.typesafe.play" %% "anorm" % "2.5.3"
+    "org.playframework.anorm" %% "anorm" % "2.6.2",
 )
 
 resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
