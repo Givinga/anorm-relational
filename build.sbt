@@ -18,6 +18,8 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
+publishTo := sonatypePublishTo.value
+
 pomExtra := {
   <url>https://github.com/mhzajac/anorm-relational</url>
   <licenses>
